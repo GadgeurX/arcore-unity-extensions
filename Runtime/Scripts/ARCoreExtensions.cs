@@ -24,6 +24,10 @@
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo(
     "Google.XR.ARCoreExtensions.GeospatialCreator")]
 
+using Unity.XR.CoreUtils;
+
+[assembly: InternalsVisibleTo("Google.XR.ARCoreExtensions.GeospatialCreator")]
+
 namespace Google.XR.ARCoreExtensions
 {
     using System;
@@ -52,9 +56,9 @@ namespace Google.XR.ARCoreExtensions
         public ARSession Session;
 
         /// <summary>
-        /// AR Foundation <c><see cref="ARSessionOrigin"/></c> used by the scene.
+        /// AR Foundation <c><see cref="XROrigin"/></c> used by the scene.
         /// </summary>
-        public ARSessionOrigin SessionOrigin;
+        public XROrigin SessionOrigin;
 
         /// <summary>
         /// AR Foundation <c><see cref="ARCameraManager"/></c> used in the ARSessionOrigin.

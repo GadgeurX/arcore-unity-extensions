@@ -109,11 +109,21 @@ namespace Google.XR.ARCoreExtensions
                     {
                         anchor.SetAnchorHandle(anchorHandle);
 
-                        // Parent the new cloud anchor to the session origin.
-                        anchor.transform.SetParent(
-                            ARCoreExtensions._instance.SessionOrigin.trackablesParent,
-                            false);
-                        anchor.Update();
+                        if (anchorHandle != IntPtr.Zero)
+                        {
+                            // Create the GameObject that is the cloud anchor.
+                            anchor = new GameObject(_cloudAnchorName).AddComponent<ARCloudAnchor>();
+                            if (anchor)
+                            {
+                                anchor.SetAnchorHandle(anchorHandle);
+
+                                // Parent the new cloud anchor to the session origin.
+                                anchor.transform.SetParent(
+                                    ARCoreExtensions._instance.SessionOrigin.TrackablesParent,
+                                    false);
+                                anchor.Update();
+                            }
+                        }
                     }
                 }
             }

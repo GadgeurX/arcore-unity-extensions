@@ -110,11 +110,22 @@ namespace Google.XR.ARCoreExtensions
                     {
                         anchor.SetAnchorHandle(anchorHandle);
 
-                        // Parent the new Geospatial Rooftop anchor to the session origin.
-                        anchor.transform.SetParent(
-                            ARCoreExtensions._instance.SessionOrigin.trackablesParent,
-                            false);
-                        anchor.Update();
+                        if (anchorHandle != IntPtr.Zero)
+                        {
+                            // Create the GameObject that is the Geospatial Rooftop anchor.
+                            anchor = new GameObject(_rooftopAnchorName)
+                                .AddComponent<ARGeospatialAnchor>();
+                            if (anchor)
+                            {
+                                anchor.SetAnchorHandle(anchorHandle);
+
+                                // Parent the new Geospatial Rooftop anchor to the session origin.
+                                anchor.transform.SetParent(
+                                    ARCoreExtensions._instance.SessionOrigin.TrackablesParent,
+                                    false);
+                                anchor.Update();
+                            }
+                        }
                     }
                 }
             }
